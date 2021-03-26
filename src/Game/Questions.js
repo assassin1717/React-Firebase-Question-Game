@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { Button, Container, Dimmer, Grid, Header, Icon, Image, Loader, Progress, Segment } from 'semantic-ui-react'
+import { Button, Container, Grid, Header, Icon, Progress } from 'semantic-ui-react'
 import axios from 'axios'
 import Nav from './Nav'
+import NavAdmin from '../Admin/Nav'
 import Question from './Question'
+import { Redirect } from 'react-router'
+import LoaderDiv from './LoaderDiv'
 
 class Questions extends Component {
     constructor(props) {
@@ -14,11 +17,13 @@ class Questions extends Component {
             currQuestion: 0,
             totalQuestions: 0,
             isLoading: false,
-            answers: []
+            answers: [],
+            finished: false
         }
 
         this.nextQuestion = this.nextQuestion.bind(this)
         this.previousQuestion = this.previousQuestion.bind(this)
+        this.finishingGame = this.finishingGame.bind(this)
     }
 
     componentDidMount() {
@@ -37,7 +42,7 @@ class Questions extends Component {
                 const key = Object.keys(data.data)[0]
                 this.setState({
                     questions: data.data[key],
-                    totalQuestions: _.size(data.data[key]),
+                    totalQuestions: _.size(data.data[key].Questions),
                     isLoading: false
                 })
             })
@@ -55,7 +60,7 @@ class Questions extends Component {
                 <Grid columns={2}>
                     {
                         Object.keys(questions.responses).map(key => {
-                            return <Question key={key} response={questions.responses[key]} id={id}/>
+                            return <Question key={key} question={questions.question} response={questions.responses[key]} id={id} />
                         })
                     }
                 </Grid>
@@ -64,16 +69,22 @@ class Questions extends Component {
     }
 
     nextQuestion() {
-        let question=this.state.currQuestion+1
+        let question = this.state.currQuestion + 1
         this.setState({
             currQuestion: question
         })
     }
 
     previousQuestion() {
-        let question=this.state.currQuestion-1
+        let question = this.state.currQuestion - 1
         this.setState({
             currQuestion: question
+        })
+    }
+
+    finishingGame() {
+        this.setState({
+            finished: true
         })
     }
 
@@ -82,31 +93,32 @@ class Questions extends Component {
             return (
                 <div>
                     <Nav />
-                    <Segment>
-                        <Dimmer active inverted>
-                            <Loader size='large'>Loading</Loader>
-                        </Dimmer>
-
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                    </Segment>
+                    <LoaderDiv />
                 </div>
             )
+        }
+        else if (this.state.finished) {
+            return <Redirect to={{
+                pathname: '/results',
+                state: {
+                    category: this.state.questions.name,
+                    icon: this.state.questions.icon
+                }
+            }} />
         }
         else {
             let itens = []
             return (
                 <div>
-                    <Nav />
-                    <Header as='h2' size='huge'>Perguntas sobre Desporto</Header>
+                    {localStorage.isAdmin && <NavAdmin />}
+                    {!localStorage.isAdmin && <Nav />}
+                    <Header as='h2' size='huge'>Perguntas sobre {this.state.questions.name}</Header>
                     <Header as='h2' size='medium'>Mostra que conheces tudo sobre <Icon name={this.state.questions.icon} />{this.state.questions.name}!!!</Header>
                     <Container>
                         {
-                            this.state.questions.Questions && Object.keys(this.state.questions.Questions)
-                                .map(key => {
-                                    itens.push(key)
-                                })
+                            this.state.questions.Questions && Object.keys(this.state.questions.Questions).map(key => {
+                                itens.push(key)
+                            })
                         }
                         {
                             this.state.questions.Questions && this.randerQuestions(this.state.questions.Questions[itens[this.state.currQuestion]], itens[this.state.currQuestion])
@@ -121,13 +133,13 @@ class Questions extends Component {
                                     <Icon name='arrow left' />
                                 </Button.Content>
                             </Button>}
-                            {this.state.currQuestion + 1 < 10 && <Button onClick={this.nextQuestion} size='large' circular animated color='red'>
+                            {this.state.currQuestion + 1 < this.state.totalQuestions && <Button onClick={this.nextQuestion} size='large' circular animated color='red'>
                                 <Button.Content visible>Próxima</Button.Content>
                                 <Button.Content hidden>
                                     <Icon name='arrow right' />
                                 </Button.Content>
                             </Button>}
-                            {this.state.currQuestion + 1 === 10 && <Button size='large' circular animated color='red'>
+                            {this.state.currQuestion + 1 === this.state.totalQuestions && <Button onClick={this.finishingGame} size='large' circular animated color='blue'>
                                 <Button.Content visible>Finalizar</Button.Content>
                                 <Button.Content hidden>
                                     <Icon name='trophy' />

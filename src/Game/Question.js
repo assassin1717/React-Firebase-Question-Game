@@ -2,26 +2,24 @@ import React, { Component } from 'react'
 import { Button, Grid, Message } from 'semantic-ui-react'
 
 class Question extends Component {
-    constructor(props) {
-        super(props)
-    }
 
-    onRadioChange = (e, { answer }) => {
+    onRadioChange = (e, { answer, isCorrect }) => {
         let answers = localStorage.playerAnswers ? JSON.parse(localStorage.getItem('playerAnswers')) : []
-        let obj={
-            question: this.props.id,
-            answer: answer
+        let obj = {
+            questionId: this.props.id,
+            question: this.props.question,
+            answer,
+            isCorrect
         }
         if (answers.length > 0) {
-            let index=-1
-            for(let i=0; i<answers.length;i++){
-                if(answers[i].question===this.props.id){
-                    index++
+            let index = -1
+            for (let i = 0; i < answers.length; i++) {
+                if (answers[i].questionId === this.props.id) {
+                    index=i
                 }
             }
             if (index > -1) {
-                answers.splice(index, 1)
-                answers.splice(index, 0, obj)
+                answers.splice(index, 1, obj)
             }
             else {
                 answers.push(obj)
@@ -37,7 +35,11 @@ class Question extends Component {
         return (
             <Grid.Column>
                 <Message inverted='true' color='orange'>
-                    <Button color='orange' onClick={this.onRadioChange} answer={this.props.response.isCorrect.toString()}>{this.props.response.answer}</Button>
+                    <Button color='orange' onClick={this.onRadioChange}
+                        answer={this.props.response.answer}
+                        isCorrect={this.props.response.isCorrect.toString()}>
+                        {this.props.response.answer}
+                    </Button>
                 </Message>
             </Grid.Column>
         )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Dropdown, Icon, Header } from 'semantic-ui-react'
+import { Menu, Icon, Header } from 'semantic-ui-react'
 
 const Nav = props => {
     return (
@@ -10,13 +10,7 @@ const Nav = props => {
                     <Menu.Item as={Link} to='/'>Home</Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item><Icon name='user' /></Menu.Item>
-                        <Dropdown item text='Opção de Login'>
-                            <Dropdown.Menu>
-                                <Dropdown.Item>Facebook</Dropdown.Item>
-                                <Dropdown.Item>Twitter</Dropdown.Item>
-                                <Dropdown.Item>Google</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                        <Menu.Item as={Link} to='/'>Login</Menu.Item>
                     </Menu.Menu>
                 </Menu>
                 <div className='App-title'>

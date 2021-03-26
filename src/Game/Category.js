@@ -3,8 +3,8 @@ import { Grid, Header, Icon, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const size = {
-    width: 200,
-    height: 200
+    width: 275,
+    height: 275
 }
 
 const Category = props => {

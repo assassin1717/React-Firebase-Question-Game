@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { Menu, Image, Dropdown, Header } from 'semantic-ui-react'
+import { Menu, Dropdown, Header, Icon } from 'semantic-ui-react'
 import firebase from 'firebase'
 
 class Nav extends Component {
@@ -35,6 +35,7 @@ class Nav extends Component {
                 localStorage.removeItem('name')
                 localStorage.removeItem('photo')
                 localStorage.removeItem('playerAnswers')
+                localStorage.removeItem('isAdmin')
                 window.location.reload()
             })
             .catch(err => {
@@ -53,10 +54,20 @@ class Nav extends Component {
                     <header className="App-header">
                         <Menu size='huge' stackable borderless>
                             <Menu.Item as={Link} to='/'>Home</Menu.Item>
-                            <Menu.Item as={Link} to='/categories'>Categorias</Menu.Item>
+                            <Dropdown item text='Categorias'>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item as={Link} to='/categories'>Categorias</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to='/newCategory'>Nova Categoria</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Dropdown item text='Perguntas'>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item as={Link} to='/newQuestion'>Nova Pergunta</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                             <Menu.Item as={Link} to='/ranking'>Ranking</Menu.Item>
                             <Menu.Menu position='right'>
-                                <Menu.Item><Image avatar src={this.state.photo} /></Menu.Item>
+                                <Menu.Item><Icon name={this.state.photo} /></Menu.Item>
                                 <Dropdown item text={this.state.name}>
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={this.logout}>Terminar Sessão</Dropdown.Item>

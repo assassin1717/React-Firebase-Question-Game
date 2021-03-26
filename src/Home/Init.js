@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Header, Container, Card, Button, Segment, Icon } from 'semantic-ui-react'
 import Nav from './Nav'
 import { auth, providers } from '../firebaseConfig'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class Init extends Component {
     constructor(props) {
@@ -22,8 +22,15 @@ class Init extends Component {
                         user,
                         isLogged: true
                     })
-                    localStorage.setItem('name', user.displayName)
-                    localStorage.setItem('photo', user.photoURL)
+                    if(user.displayName){
+                        localStorage.setItem('name', user.displayName)
+                        localStorage.setItem('photo', user.photoURL)
+                    }
+                    else{
+                        localStorage.setItem('name', 'Admin')
+                        localStorage.setItem('photo', 'user secret')
+                        localStorage.setItem('isAdmin', 'true')
+                    }
                 }
                 else {
                     this.setState({
@@ -63,7 +70,7 @@ class Init extends Component {
                         </p>
                         <Card fluid>
                             <Card.Content>
-                                Faz Login agora
+                                Faz já login com a tua conta e joga
                             </Card.Content>
                             <Card.Content>
                                 <Button color='facebook' onClick={() => this.authNow('facebook')}><Icon name='facebook' />Facebook</Button>
@@ -75,7 +82,7 @@ class Init extends Component {
                                 <Button color='google plus' onClick={() => this.authNow('google')}><Icon name='google' />Google</Button>
                             </Card.Content>
                             <Card.Content>
-                                <Button basic color='black'><Icon name='lock' />Administrador</Button>
+                                <Button as={Link} to='/login' basic color='black'><Icon name='lock' />Administrador</Button>
                             </Card.Content>
                         </Card>
                     </Container>
