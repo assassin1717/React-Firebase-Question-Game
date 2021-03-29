@@ -3,7 +3,7 @@ import { Button, Container, Header, Icon, Table } from 'semantic-ui-react'
 import Nav from './Nav'
 import NavAdmin from '../Admin/Nav'
 import Result from './Result'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import config from '../firebaseConfig'
 import LoaderDiv from './LoaderDiv'
 
@@ -33,6 +33,17 @@ class Results extends Component {
         })
     }
 
+    componentWillUnmount(){
+        this.savedResults()
+        this.setState({
+            category: '',
+            icon: '',
+            totalPoints: 0,
+            isSaving: false,
+            answersInfo: []
+        })
+    }
+
     totalPoints() {
         let counter = 0
         let answersInfo = this.state.answersInfo
@@ -51,20 +62,17 @@ class Results extends Component {
                 category: category,
                 name: localStorage.getItem('name'),
                 photo: localStorage.getItem('photo'),
-                point: localStorage.getItem('points')
+                points: localStorage.getItem('totalPoints')
             }
             config.push(`Ranking`, {
                 data: newResult
             })
                 .then(ref => {
-                    this.setState({
-                        isSaved: true
-                    })
+
                 })
                 .catch(err => {
                     console.log(err)
                 })
-            this.setState({ isSaving: false })
     }
 
     render() {
@@ -80,9 +88,6 @@ class Results extends Component {
                 </div>
             )
         }
-        else if (this.state.isSaved) {
-            return <Redirect to='/categories' />
-        }
         else{
             return (
                 <div>
@@ -92,7 +97,7 @@ class Results extends Component {
                     <Header size='medium'>Vê o teu desempenho na categoria <Icon name={this.state.icon} />{this.state.category}.</Header>
                     <br />
                     <Container>
-                        <Table padded celled unstackable inverted color='orange' textAlign='center' size='huge'>
+                        <Table padded celled unstackable inverted color='orange' textAlign='center' size='large'>
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell>Número da Pergunta</Table.HeaderCell>
@@ -113,7 +118,7 @@ class Results extends Component {
                     </Container>
                     <Header as='h2' size='medium'>Fizeste {totalPoints} {infoPoints}.</Header>
                     <br />
-                    <Button as={Link} to='/categories' size='huge' color='black' onClick={this.savedResults}>Jogar de novo</Button>
+                    <Button as={Link} to='/categories' size='huge' color='black'>Jogar de novo</Button>
                 </div>
             )
         }

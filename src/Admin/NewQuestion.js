@@ -72,7 +72,7 @@ class NewQuestion extends Component {
         axios
             .get(url)
             .then(data => {
-                Object.keys(data.data).map(key => {
+                Object.keys(data.data).forEach(key => {
                     let obj = {
                         key: key,
                         text: data.data[key].name,

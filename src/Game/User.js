@@ -1,15 +1,23 @@
 import React from 'react'
-import { List, Image } from 'semantic-ui-react'
+import { Image, Table, Icon, Header } from 'semantic-ui-react'
 
 const User = props => {
-    const { foto, name, points } = props.user
+    const { category, photo, name, points } = props.userInfo
     return (
-        <List.Item>
-            <List.Content>
-                <Image avatar src={foto} />
-                {name} - {points} pontos
-            </List.Content>
-        </List.Item>
+        <Table.Row>
+            <Table.Cell>
+                {name==='Admin' && <Icon name={photo} />}
+                {name!=='Admin' && <Image avatar src={photo} />}
+            {name}
+        </Table.Cell>
+            <Table.Cell>
+                <Header as='h4'>
+                    <Header.Content>{category}</Header.Content>
+                </Header>
+            </Table.Cell>
+            <Table.Cell>{points}</Table.Cell>
+            
+        </Table.Row>
     )
 }
 

@@ -85,7 +85,7 @@ class Login extends Component {
                         <Header color='red'>Administradores só podem ser adicionados pelo criador da app.</Header>
                         <br />
                         <div className='centerforms'>
-                            <Form onSubmit={this.authUser}>
+                            <Form size='huge' onSubmit={this.authUser}>
                                 <Form.Field>
                                     <Form.Input
                                         label='Email'

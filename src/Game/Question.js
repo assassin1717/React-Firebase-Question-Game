@@ -1,7 +1,24 @@
 import React, { Component } from 'react'
-import { Button, Grid, Message } from 'semantic-ui-react'
+import { Button, Grid, Icon, Message } from 'semantic-ui-react'
 
 class Question extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            isAnswered: false
+        }
+
+        this.handleClicks = this.handleClicks.bind(this)
+    }
+
+    handleClicks(e, { answer, isCorrect }) {
+        this.setState({
+            isAnswered: true
+        })
+        this.props.setState()
+        this.onRadioChange(e, { answer, isCorrect })
+    }
 
     onRadioChange = (e, { answer, isCorrect }) => {
         let answers = localStorage.playerAnswers ? JSON.parse(localStorage.getItem('playerAnswers')) : []
@@ -15,7 +32,7 @@ class Question extends Component {
             let index = -1
             for (let i = 0; i < answers.length; i++) {
                 if (answers[i].questionId === this.props.id) {
-                    index=i
+                    index = i
                 }
             }
             if (index > -1) {
@@ -35,10 +52,13 @@ class Question extends Component {
         return (
             <Grid.Column>
                 <Message inverted='true' color='orange'>
-                    <Button color='orange' onClick={this.onRadioChange}
+                    <Button color='orange' animated onClick={this.handleClicks}
                         answer={this.props.response.answer}
                         isCorrect={this.props.response.isCorrect.toString()}>
-                        {this.props.response.answer}
+                        <Button.Content visible>{this.props.response.answer}</Button.Content>
+                        <Button.Content hidden>
+                            <Icon name='check' />
+                        </Button.Content>
                     </Button>
                 </Message>
             </Grid.Column>

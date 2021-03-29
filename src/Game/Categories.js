@@ -20,11 +20,16 @@ class Categories extends Component {
             context: this,
             state: 'categories',
             asArray: false
-        }
-        )
+        })
         if(localStorage.playerAnswers){
             localStorage.removeItem('playerAnswers')
         }
+    }
+
+    componentWillUnmount(){
+        this.setState({
+            categories: {}
+        })
     }
 
     render() {
