@@ -7,6 +7,7 @@ import NavAdmin from '../Admin/Nav'
 import Question from './Question'
 import { Redirect } from 'react-router'
 import LoaderDiv from './LoaderDiv'
+import { Link } from 'react-router-dom'
 
 class Questions extends Component {
     constructor(props) {
@@ -120,19 +121,31 @@ class Questions extends Component {
                 <div>
                     {localStorage.isAdmin && <NavAdmin />}
                     {!localStorage.isAdmin && <Nav />}
-                    <Header as='h2' size='huge'>Perguntas sobre {this.state.questions.name}</Header>
-                    <Header as='h2' size='medium'>Mostra que conheces tudo sobre <Icon name={this.state.questions.icon} />{this.state.questions.name}!!!</Header>
+                    {
+                        this.state.questions.Questions && Object.keys(this.state.questions.Questions).forEach(key => {
+                            itens.push(key)
+                        })
+                    }
+                    <br />
+                    {itens.length > 0 &&
+                        <div>
+                            <Header as='h2' size='huge'>Perguntas sobre {this.state.questions.name}</Header>
+                            <Header as='h2' size='medium'>Mostra que conheces tudo sobre <Icon name={this.state.questions.icon} />{this.state.questions.name}!!!</Header>
+                        </div>
+                    }
+                    {itens.length === 0 &&
+                        <div>
+                            <Header as='h2' size='huge'>Esta categoria ainda não tem perguntas associadas</Header>
+                            <Header as='h2' size='medium'><Button as={Link} to='/categories' size='large' color='black'>Clica aqui</Button> para voltares ás categorias</Header>
+
+                        </div>
+                    }
                     <Container>
-                        {
-                            this.state.questions.Questions && Object.keys(this.state.questions.Questions).forEach(key => {
-                                itens.push(key)
-                            })
-                        }
-                        {
-                            this.state.questions.Questions && this.renderQuestions(this.state.questions.Questions[itens[this.state.currQuestion]], itens[this.state.currQuestion])
+                        {itens.length > 0 &&
+                             this.renderQuestions(this.state.questions.Questions[itens[this.state.currQuestion]], itens[this.state.currQuestion])
                         }
                         <br />
-                        <Progress color='black' progress='ratio' value={this.state.currQuestion + 1} total={this.state.totalQuestions} />
+                        {itens.length > 0 && <Progress color='black' progress='ratio' value={this.state.currQuestion + 1} total={this.state.totalQuestions} />}
                         <br />
                         <Container>
                             {this.state.currQuestion + 1 > 1 && this.state.isAnswered === false &&
@@ -157,7 +170,7 @@ class Questions extends Component {
                                         <Icon name='arrow right' />
                                     </Button.Content>
                                 </Button>}
-                            {this.state.currQuestion + 1 < this.state.totalQuestions && this.state.isAnswered===true &&
+                            {this.state.currQuestion + 1 < this.state.totalQuestions && this.state.isAnswered === true &&
                                 <Button onClick={this.nextQuestion} size='large' circular animated color='red'>
                                     <Button.Content visible>Próxima</Button.Content>
                                     <Button.Content hidden>
@@ -172,7 +185,7 @@ class Questions extends Component {
                                         <Icon name='trophy' />
                                     </Button.Content>
                                 </Button>}
-                            {this.state.currQuestion + 1 === this.state.totalQuestions && this.state.isAnswered===true &&
+                            {this.state.currQuestion + 1 === this.state.totalQuestions && this.state.isAnswered === true &&
                                 <Button onClick={this.finishingGame} size='large' circular animated color='blue'>
                                     <Button.Content visible>Finalizar</Button.Content>
                                     <Button.Content hidden>

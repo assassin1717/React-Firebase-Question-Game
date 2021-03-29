@@ -1,9 +1,9 @@
 import React from 'react'
-import { Dimmer, Image, Segment, Loader } from 'semantic-ui-react'
+import { Dimmer, Image, Loader } from 'semantic-ui-react'
 
 const LoaderDiv = props => {
     return (
-        <Segment>
+        <div className='loader'>
             <Dimmer active>
                 <Loader size='massive'>Loading</Loader>
             </Dimmer>
@@ -11,7 +11,7 @@ const LoaderDiv = props => {
             <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
             <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
             <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-        </Segment>
+        </div>
     )
 }
 

@@ -25,3 +25,7 @@
   margin: auto;
   padding: 20px;
 }
+
+.loader{
+  height: 100vh;
+}
