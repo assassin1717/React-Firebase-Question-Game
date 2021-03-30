@@ -80,6 +80,7 @@ class Questions extends Component {
     nextQuestion() {
         let question = this.state.currQuestion + 1
         this.setState({
+            isAnswered: false,
             currQuestion: question
         })
     }
@@ -87,6 +88,7 @@ class Questions extends Component {
     previousQuestion() {
         let question = this.state.currQuestion - 1
         this.setState({
+            isAnswered: false,
             currQuestion: question
         })
     }
@@ -178,14 +180,14 @@ class Questions extends Component {
                                     </Button.Content>
                                 </Button>}
 
-                            {this.state.currQuestion + 1 === this.state.totalQuestions && this.state.isAnswered === false &&
+                            {this.state.currQuestion + 1 === this.state.totalQuestions && this.state.isAnswered===false &&
                                 <Button onClick={this.finishingGame} size='large' circular animated color='blue' disabled>
                                     <Button.Content visible>Finalizar</Button.Content>
                                     <Button.Content hidden>
                                         <Icon name='trophy' />
                                     </Button.Content>
                                 </Button>}
-                            {this.state.currQuestion + 1 === this.state.totalQuestions && this.state.isAnswered === true &&
+                            {this.state.currQuestion + 1 === this.state.totalQuestions && this.state.isAnswered &&
                                 <Button onClick={this.finishingGame} size='large' circular animated color='blue'>
                                     <Button.Content visible>Finalizar</Button.Content>
                                     <Button.Content hidden>
