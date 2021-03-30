@@ -10,7 +10,7 @@ class Init extends Component {
 
         this.state = {
             user: {},
-            isLogged: false
+            isLogged: this.props.location.state ? this.props.location.state.isLogged : false
         }
 
         auth.onAuthStateChanged((user) => {

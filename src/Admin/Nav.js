@@ -46,7 +46,12 @@ class Nav extends Component {
 
     render() {
         if (!localStorage.name) {
-            return <Redirect to='/' />
+            return <Redirect to={{
+                pathname: '/',
+                state: {
+                    isLogged: false
+                }
+            }} />
         }
         else {
             return (
