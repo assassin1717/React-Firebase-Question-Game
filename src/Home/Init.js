@@ -12,9 +12,7 @@ class Init extends Component {
             user: {},
             isLogged: false
         }
-    }
 
-    componentWillMount() {
         auth.onAuthStateChanged((user) => {
             if (!localStorage.name) {
                 if (user) {
