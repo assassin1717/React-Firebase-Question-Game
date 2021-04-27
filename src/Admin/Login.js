@@ -64,13 +64,9 @@ class Login extends Component {
                 <div>
                     <Nav />
                     <Segment>
-                        <Dimmer active inverted>
+                        <Dimmer active>
                             <Loader size='large'>Loading</Loader>
                         </Dimmer>
-
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
                     </Segment>
                 </div>
             )

@@ -38,7 +38,7 @@ class Questions extends Component {
             questions: {},
             isLoading: true
         })
-        const url = `https://reactquizz-assassin1717-default-rtdb.europe-west1.firebasedatabase.app/Categories.json?orderBy="name"&equalTo="${name}"`
+        const url = `https://quiizz-estyleoflife-default-rtdb.europe-west1.firebasedatabase.app/Categories.json?orderBy="name"&equalTo="${name}"`
         axios
             .get(url)
             .then(data => {

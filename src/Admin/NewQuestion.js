@@ -68,7 +68,7 @@ class NewQuestion extends Component {
 
     getCategories() {
         let categories = []
-        const url = `https://reactquizz-assassin1717-default-rtdb.europe-west1.firebasedatabase.app/Categories.json`
+        const url = `https://quiizz-estyleoflife-default-rtdb.europe-west1.firebasedatabase.app/Categories.json`
         axios
             .get(url)
             .then(data => {
