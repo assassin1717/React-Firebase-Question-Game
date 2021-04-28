@@ -97,7 +97,7 @@ class Results extends Component {
                     <Header size='medium'>Vê o teu desempenho na categoria <Icon name={this.state.icon} />{this.state.category}.</Header>
                     <br />
                     <Container>
-                        <Table padded celled unstackable inverted color='orange' textAlign='center' size='large'>
+                        <Table padded celled unstackable inverted color='violet' textAlign='center' size='large'>
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell>Número da Pergunta</Table.HeaderCell>

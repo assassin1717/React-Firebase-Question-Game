@@ -51,8 +51,8 @@ class Question extends Component {
     render() {
         return (
             <Grid.Column>
-                <Message inverted='true' color='orange'>
-                    <Button color='orange' animated onClick={this.handleClicks}
+                <Message inverted='true' color='violet'>
+                    <Button color='violet' animated onClick={this.handleClicks}
                         answer={this.props.response.answer}
                         isCorrect={this.props.response.isCorrect.toString()}>
                         <Button.Content visible>{this.props.response.answer}</Button.Content>

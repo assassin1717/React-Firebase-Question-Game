@@ -81,7 +81,7 @@ class Nav extends Component {
                             </Menu.Menu>
                         </Menu>
                         <div className='App-title'>
-                            <Header as='h2' size='huge' color='orange'>Jogo de Perguntas e Respostas</Header>
+                            <Header as='h2' size='huge' inverted>Jogo de Perguntas e Respostas</Header>
                         </div>
                     </header>
                 </div>

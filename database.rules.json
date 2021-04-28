@@ -1,6 +1,11 @@
 {
   "rules": {
-    ".read": "now < 1622070000000",  
-    ".write": "now < 1622070000000"
+    ".read": true,
+    ".write": "auth !== null",
+    "Categories": {
+      ".indexOn": [
+        "name"
+      ]
+    }
   }
 }

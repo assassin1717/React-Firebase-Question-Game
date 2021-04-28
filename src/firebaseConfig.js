@@ -2,7 +2,6 @@ import firebase from 'firebase'
 import Rebase from 're-base'
 
 const firebaseConfig = firebase.initializeApp({
-  apiKey: "AIzaSyB2iD8w2ZgehSvtY2bGUtMObWJA64x7R4g",
   apiKey: "AIzaSyANynM5oCbsehN05cGJGu81c4ZXcaI_GnQ",
   authDomain: "quiizz-estyleoflife.firebaseapp.com",
   databaseURL: "https://quiizz-estyleoflife-default-rtdb.europe-west1.firebasedatabase.app",

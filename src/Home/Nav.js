@@ -13,9 +13,6 @@ const Nav = props => {
                         <Menu.Item as={Link} to='/'>Login</Menu.Item>
                     </Menu.Menu>
                 </Menu>
-                <div className='App-title'>
-                    <Header as='h2' size='huge' color='orange'>Jogo de Perguntas e Respostas</Header>
-                </div>
             </header>
         </div>
     )

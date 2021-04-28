@@ -20,11 +20,11 @@ class Init extends Component {
                         user,
                         isLogged: true
                     })
-                    if(user.displayName){
+                    if (user.displayName) {
                         localStorage.setItem('name', user.displayName)
                         localStorage.setItem('photo', user.photoURL)
                     }
-                    else{
+                    else {
                         localStorage.setItem('name', 'Admin')
                         localStorage.setItem('photo', 'user secret')
                         localStorage.setItem('isAdmin', 'true')
@@ -58,29 +58,33 @@ class Init extends Component {
                     <Nav />
                     <Container>
                         <Segment piled>
-                            <h1>Quizz</h1>
+                            <Header as='h1' size='huge'>
+                                Quizz
+                            </Header>
                         </Segment>
                         <Header as='h2'>
                             Jogo de Perguntas e Respostas
                         </Header>
-                        <p>
+                        <Segment basic size='huge'>
                             Desafia os teus amigos neste incrível jogo de perguntas e respostas. Basta iniciar sessão!
-                        </p>
+                        </Segment>
                         <Card fluid>
                             <Card.Content>
-                                Faz já login com a tua conta e joga
+                                <Segment basic size='big'>
+                                    Faz já login com a tua conta e joga
+                                </Segment>
                             </Card.Content>
                             <Card.Content>
-                                <Button color='facebook' onClick={() => this.authNow('facebook')}><Icon name='facebook' />Facebook</Button>
+                                <Button color='facebook' onClick={() => this.authNow('facebook')} size='big'><Icon name='facebook' />Facebook</Button>
                             </Card.Content>
                             <Card.Content>
-                                <Button color='twitter' onClick={() => this.authNow('twitter')}><Icon name='twitter' />Twitter</Button>
+                                <Button color='twitter' onClick={() => this.authNow('twitter')} size='big'><Icon name='twitter' />Twitter</Button>
                             </Card.Content>
                             <Card.Content>
-                                <Button color='google plus' onClick={() => this.authNow('google')}><Icon name='google' />Google</Button>
+                                <Button color='google plus' onClick={() => this.authNow('google')} size='big'><Icon name='google' />Google</Button>
                             </Card.Content>
                             <Card.Content>
-                                <Button as={Link} to='/login' basic color='black'><Icon name='lock' />Administrador</Button>
+                                <Button as={Link} to='/login' basic color='black' size='big'><Icon name='lock' />Administrador</Button>
                             </Card.Content>
                         </Card>
                     </Container>

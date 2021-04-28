@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Container, Dimmer, Form, Header, Image, Loader, Segment } from 'semantic-ui-react'
+import { Container, Form, Header } from 'semantic-ui-react'
 import { auth } from '../firebaseConfig'
+import LoaderDiv from '../Game/LoaderDiv'
 import Nav from '../Home/Nav'
 
 class Login extends Component {
@@ -63,11 +64,7 @@ class Login extends Component {
             return (
                 <div>
                     <Nav />
-                    <Segment>
-                        <Dimmer active>
-                            <Loader size='large'>Loading</Loader>
-                        </Dimmer>
-                    </Segment>
+                    <LoaderDiv />
                 </div>
             )
         }
@@ -102,7 +99,7 @@ class Login extends Component {
                                         onChange={this.handleChange}
                                     />
                                 </Form.Field>
-                                <Form.Button content='Submit' />
+                                <Form.Button content='Submit' size='big' primary />
                             </Form>
                         </div>
                     </Container>

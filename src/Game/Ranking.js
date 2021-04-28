@@ -50,7 +50,7 @@ class Ranking extends Component {
                 <br />
 
                 <Container>
-                    <Table padded celled unstackable inverted color='orange' textAlign='center' size='large'>
+                    <Table padded celled unstackable inverted color='violet' textAlign='center' size='large'>
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>Nome</Table.HeaderCell>

@@ -132,7 +132,7 @@ class Questions extends Component {
                     {itens.length > 0 &&
                         <div>
                             <Header as='h2' size='huge'>Perguntas sobre {this.state.questions.name}</Header>
-                            <Header as='h2' size='medium'>Mostra que conheces tudo sobre <Icon name={this.state.questions.icon} />{this.state.questions.name}!!!</Header>
+                            <Header as='h2' size='medium'>Mostra que conheces tudo sobre <Icon name={this.state.questions.icon} inverted />{this.state.questions.name}!!!</Header>
                         </div>
                     }
                     {itens.length === 0 &&
@@ -147,7 +147,7 @@ class Questions extends Component {
                              this.renderQuestions(this.state.questions.Questions[itens[this.state.currQuestion]], itens[this.state.currQuestion])
                         }
                         <br />
-                        {itens.length > 0 && <Progress color='black' progress='ratio' value={this.state.currQuestion + 1} total={this.state.totalQuestions} />}
+                        {itens.length > 0 && <Progress color='teal' progress='ratio' value={this.state.currQuestion + 1} total={this.state.totalQuestions} />}
                         <br />
                         <Container>
                             {this.state.currQuestion + 1 > 1 && this.state.isAnswered === false &&

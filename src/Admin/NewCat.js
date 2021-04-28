@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Nav from '../Admin/Nav'
 import config from '../firebaseConfig'
-import { Container, Dimmer, Form, Header, Image, Loader, Segment } from 'semantic-ui-react'
+import { Container, Form, Header } from 'semantic-ui-react'
 import { Redirect } from 'react-router'
+import LoaderDiv from '../Game/LoaderDiv'
 
 class NewCat extends Component {
     constructor(props) {
@@ -51,15 +52,7 @@ class NewCat extends Component {
             return (
                 <div>
                     <Nav />
-                    <Segment>
-                        <Dimmer active inverted>
-                            <Loader size='large'>Loading</Loader>
-                        </Dimmer>
-
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                    </Segment>
+                    <LoaderDiv />
                 </div>
             )
         }
