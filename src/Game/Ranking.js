@@ -46,7 +46,7 @@ class Ranking extends Component {
                 {localStorage.isAdmin && <NavAdmin />}
                 {!localStorage.isAdmin && <Nav />}
                 <Header as='h2' size='huge'>RANKING</Header>
-                <Header size='medium'>Quem é o GOAT??</Header>
+                <Header size='medium'>Quem é o Melhor??</Header>
                 <br />
 
                 <Container>
